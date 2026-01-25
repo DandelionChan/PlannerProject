@@ -8,13 +8,13 @@ namespace BusinessLayer.Models
 {
     public abstract class UserActivity : Activity
     {
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         public User User { get; set; }
 
         public UserActivity() { }
         public UserActivity(
             string name,
-            int userId,
+            string userId,
             DateOnly date,
             string description,
             string color,

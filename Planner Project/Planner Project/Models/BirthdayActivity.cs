@@ -13,7 +13,7 @@ namespace BusinessLayer.Models
         protected BirthdayActivity() { }
         public BirthdayActivity(
             string name,
-            int userId,
+            string userId,
             string birthdayPerson,
             DateOnly date,
             string description,

@@ -13,7 +13,7 @@ namespace BusinessLayer.Models
         protected AppointmentActivity() { }
         public AppointmentActivity(
             string name,
-            int userId,
+            string userId,
             DateOnly date,
             string description,
             string color,

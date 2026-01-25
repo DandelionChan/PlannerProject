@@ -14,7 +14,7 @@ namespace BusinessLayer.Models
         protected TaskActivity() { }
         public TaskActivity(
             string name,
-            int userId,
+            string userId,
             DateOnly date,
             string description,
             string color,

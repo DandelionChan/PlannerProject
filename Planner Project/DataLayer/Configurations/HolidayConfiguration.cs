@@ -6,6 +6,7 @@ public class HolidayConfiguration : IEntityTypeConfiguration<Holiday>
 {
     public void Configure(EntityTypeBuilder<Holiday> builder)
     {
-
+        builder.HasIndex(h => new { h.Name, h.Date })
+               .IsUnique();
     }
 }
