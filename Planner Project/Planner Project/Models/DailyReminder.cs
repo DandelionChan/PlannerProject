@@ -8,6 +8,7 @@ namespace BusinessLayer.Models
 {
     public class DailyRemider
     {
+        public int DailyRemiderId { get; set; }
         public string Text { get; set; }
         public enum RecurrenceType
         {
@@ -19,9 +20,12 @@ namespace BusinessLayer.Models
         }
         public RecurrenceType Recurrence { get; set; }
 
-        List<User> Users;
+        public ICollection<User> Users;
 
-        public DailyRemider() {}
+        public DailyRemider() 
+        {
+            Users = new List<User>();
+        }
 
         public DailyRemider(string text, RecurrenceType recurrence, List<User> users = null)
         {

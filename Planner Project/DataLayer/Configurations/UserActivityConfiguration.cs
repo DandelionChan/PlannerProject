@@ -18,7 +18,7 @@ namespace DataLayer.Configurations
                 builder.HasIndex(a => a.UserId);
 
             builder.HasOne(ua => ua.User)
-                   .WithMany()
+                   .WithMany(u => u.UserActivities)
                    .HasForeignKey(ua => ua.UserId)
                    .IsRequired()
                    .OnDelete(DeleteBehavior.Cascade);

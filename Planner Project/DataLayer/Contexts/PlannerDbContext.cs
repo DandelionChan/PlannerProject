@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using BusinessLayer.Models;
@@ -29,6 +30,8 @@ namespace DataLayer.Contexts
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfigurationsFromAssembly(typeof(ActivityConfiguration).Assembly);
+            builder.ApplyConfiguration(new UserConfiguration());
+            builder.ApplyConfiguration(new DailyRemindersConfiguration());
             base.OnModelCreating(builder);
         }
     }

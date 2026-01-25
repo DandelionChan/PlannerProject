@@ -11,18 +11,19 @@ namespace BusinessLayer.Models
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public List<Activity> Activities { get; set; }
-        public List<DailyRemider> DailyRemiders { get; set; }
+        public ICollection<UserActivity> UserActivities { get; set; }
+        public ICollection<DailyRemider> DailyRemiders { get; set; }
+
         public User() { }
 
-        public User(string userName, string email, string firstName, string lastName, List<Activity> activities = null,
+        public User(string userName, string email, string firstName, string lastName, List<UserActivity> userActivities = null,
         List<DailyRemider> dailyRemiders = null)
         {
             UserName = userName;
             Email = email;
             FirstName = firstName;
             LastName = lastName;
-            Activities = activities ?? new List<Activity>();
+            UserActivities = userActivities ?? new List<UserActivity>();
             DailyRemiders = dailyRemiders ?? new List<DailyRemider>();
         }
     }
