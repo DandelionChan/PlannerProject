@@ -19,6 +19,16 @@ namespace BusinessLayer.Models
         }
         public RecurrenceType Recurrence { get; set; }
 
-        List<User> Users = new List<User>();
+        List<User> Users;
+
+        public DailyRemider() {}
+
+        public DailyRemider(string text, RecurrenceType recurrence, List<User> users = null)
+        {
+            Text = text;
+            Recurrence = recurrence;
+            Users = users ?? new List<User>();
+        }
+
     }
 }
