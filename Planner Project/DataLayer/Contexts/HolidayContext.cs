@@ -19,40 +19,40 @@ namespace DataLayer.Contexts
 
         public async Task CreateAsync(Holiday item)
         {
-            context.Holidays.Add(item);
+            context.Set<Holiday>().Add(item);
             await context.SaveChangesAsync();
         }
 
         public async Task<Holiday> ReadAsync(int key)
         {
-            return await context.Holidays.FirstOrDefaultAsync(h => h.ActivityId == key);
+            return await context.Set<Holiday>().FirstOrDefaultAsync(h => h.ActivityId == key);
         }
 
         public async Task<IEnumerable<Holiday>> ReadAllAsync()
         {
-            return await context.Holidays.OrderBy(h => h.Date).ToListAsync();
+            return await context.Set<Holiday>().OrderBy(h => h.Date).ToListAsync();
         }
 
         public async Task UpdateAsync(Holiday item)
         {
-            context.Holidays.Update(item);
+            context.Set<Holiday>().Update(item);
             await context.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(int key)
         {
-            var holiday = await context.Holidays.FindAsync(key);
+            var holiday = await context.Set<Holiday>().FindAsync(key);
 
             if (holiday == null)
                 throw new ArgumentException("Holiday not found.");
 
-            context.Holidays.Remove(holiday);
+            context.Set<Holiday>().Remove(holiday);
             await context.SaveChangesAsync();
         }
 
         public async Task<bool> HolidayExistsAsync(string name, DateOnly date)
         {
-            return await context.Holidays.AnyAsync(h =>
+            return await context.Set<Holiday>().AnyAsync(h =>
                 h.Name == name && h.Date == date);
         }
     }

@@ -21,7 +21,7 @@ namespace DataLayer.Contexts
         {
             try
             {
-                context.Tasks.Add(item);
+                context.Set<TaskActivity>().Add(item);
                 await context.SaveChangesAsync();
             }
             catch (Exception ex)
@@ -34,7 +34,7 @@ namespace DataLayer.Contexts
         {
             try
             {
-                return await context.Tasks
+                return await context.Activities.OfType<TaskActivity>()
                     .Include(t => t.User)
                     .FirstOrDefaultAsync(t => t.ActivityId == key);
             }
@@ -48,7 +48,7 @@ namespace DataLayer.Contexts
         {
             try
             {
-                return await context.Tasks
+                return await context.Set<TaskActivity>()
                     .Include(t => t.User)
                     .ToListAsync();
             }
@@ -62,7 +62,7 @@ namespace DataLayer.Contexts
         {
             try
             {
-                context.Tasks.Update(item);
+                context.Set<TaskActivity>().Update(item);
                 await context.SaveChangesAsync();
             }
             catch (Exception ex)
@@ -75,14 +75,14 @@ namespace DataLayer.Contexts
         {
             try
             {
-                TaskActivity task = await context.Tasks.FindAsync(key);
+                TaskActivity task = await context.Set<TaskActivity>().FindAsync(key);
 
                 if (task == null)
                 {
                     throw new ArgumentException("Task does not exist!");
                 }
 
-                context.Tasks.Remove(task);
+                context.Set<TaskActivity>().Remove(task);
                 await context.SaveChangesAsync();
             }
             catch (Exception ex)

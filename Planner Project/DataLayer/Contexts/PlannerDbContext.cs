@@ -20,11 +20,11 @@ namespace DataLayer.Contexts
         }
 
         public DbSet<Activity> Activities { get; set; }
-        public DbSet<UserActivity> UserActivities { get; set; }
-        public DbSet<TaskActivity> Tasks { get; set; }
-        public DbSet<AppointmentActivity> Appointments { get; set; }
-        public DbSet<BirthdayActivity> Birthdays { get; set; }
-        public DbSet<Holiday> Holidays { get; set; }
+        //public DbSet<UserActivity> UserActivities { get; set; }
+        //public DbSet<TaskActivity> Tasks { get; set; }
+        //public DbSet<AppointmentActivity> Appointments { get; set; }
+        //public DbSet<BirthdayActivity> Birthdays { get; set; }
+        //public DbSet<Holiday> Holidays { get; set; }
         public DbSet<DailyRemider> DailyRemiders { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)

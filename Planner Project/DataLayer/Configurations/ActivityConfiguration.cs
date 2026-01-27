@@ -31,7 +31,7 @@ namespace DataLayer.Configurations
             // TPH discriminator for inheritance
             builder.HasDiscriminator<string>("ActivityDiscriminator")
               .HasValue<Holiday>("Holiday")
-              .HasValue<UserActivityConfiguration>("UserActivity") // abstract base for user-bound activities
+              .HasValue<UserActivity>("UserActivity") // abstract base for user-bound activities
               .HasValue<AppointmentActivity>("Appointment")
               .HasValue<TaskActivity>("Task")
               .HasValue<BirthdayActivity>("Birthday");

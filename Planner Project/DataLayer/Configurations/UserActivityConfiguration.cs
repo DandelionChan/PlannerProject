@@ -14,7 +14,7 @@ namespace DataLayer.Configurations
         {
             public void Configure(EntityTypeBuilder<UserActivity> builder)
             {
-                builder.HasKey(a => a.ActivityId);
+                //builder.HasKey(a => a.ActivityId);
                 builder.HasIndex(a => a.UserId);
 
             builder.HasOne(ua => ua.User)

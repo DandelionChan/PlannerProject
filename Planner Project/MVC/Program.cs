@@ -1,3 +1,8 @@
+using BusinessLayer.Models;
+using DataLayer.Contexts;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+
 namespace MVC
 {
     public class Program
@@ -8,6 +13,16 @@ namespace MVC
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            //Add DbContext
+            builder.Services.AddDbContext<PlannerDbContext>(options => options.UseMySql(
+            builder.Configuration.GetConnectionString("DefaultConnection"),
+            ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection"))));
+
+            //Add Identity
+            builder.Services.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<PlannerDbContext>()
+                .AddDefaultTokenProviders();
 
             var app = builder.Build();
 
@@ -24,6 +39,7 @@ namespace MVC
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllerRoute(
