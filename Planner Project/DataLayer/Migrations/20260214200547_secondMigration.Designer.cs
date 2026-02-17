@@ -3,6 +3,7 @@ using System;
 using DataLayer.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataLayer.Migrations
 {
     [DbContext(typeof(PlannerDbContext))]
-    partial class PlannerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260214200547_secondMigration")]
+    partial class secondMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -75,38 +78,6 @@ namespace DataLayer.Migrations
                     b.HasKey("DailyRemiderId");
 
                     b.ToTable("DailyRemiders", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            DailyRemiderId = 1,
-                            Recurrence = 1,
-                            Text = "Drink 2L Water"
-                        },
-                        new
-                        {
-                            DailyRemiderId = 2,
-                            Recurrence = 1,
-                            Text = "Morning Meditation"
-                        },
-                        new
-                        {
-                            DailyRemiderId = 3,
-                            Recurrence = 1,
-                            Text = "Read 10 Pages"
-                        },
-                        new
-                        {
-                            DailyRemiderId = 4,
-                            Recurrence = 1,
-                            Text = "Evening Walk"
-                        },
-                        new
-                        {
-                            DailyRemiderId = 6,
-                            Recurrence = 1,
-                            Text = "Practice Coding for 30 Minutes"
-                        });
                 });
 
             modelBuilder.Entity("BusinessLayer.Models.User", b =>

@@ -1,0 +1,101 @@
+﻿@{
+    ViewData["Title"] = "Calendar";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/styleCalendar.css" />
+}
+
+<div class="calendar-controls">
+    <button id="openEventModal">+ New Event</button>
+    <button type="button" id="openReminderModal" class="save-btn" style="background: #ff96e1; color: #000;">
+        Manage Daily Reminders
+    </button>
+</div>
+
+<h1>@ViewData["UserName"]'s Calendar</h1>
+
+<div class="modal hidden" id="reminderModal">
+    <div id="reminder-modal-content" class="modal-content hidden">
+        <div class="modal-header">
+            <h2>Daily Reminders</h2>
+            <span id="closeReminderModal" class="close-btn">&times;</span>
+        </div>
+        <div id="reminderListContainer">
+            <div class="text-center">Loading reminders...</div>
+        </div>
+    </div>
+</div>
+
+<div id="eventModal" class="modal hidden">
+    <div id="modal-content" class="modal-content">
+        <div class="modal-header">
+            <h2>Create Event</h2>
+            <span id="closeModal" class="close-btn">&times;</span>
+        </div>
+        <form id="eventForm">
+            <label>Event Type</label>
+            <select name="type" id="eventType">
+                <option value="task">Task</option>
+                <option value="appointment">Appointment</option>
+                <option value="birthday">Birthday</option>
+            </select>
+
+            <label>Title</label>
+            <input type="text" name="title" required />
+
+            <label>Date</label>
+            <input type="date" name="event_date" required />
+
+            <div id="timeFields" class="hidden">
+                <label>Start Time</label>
+                <input type="time" name="start_time">
+                <label>End Time</label>
+                <input type="time" name="end_time">
+            </div>
+
+            <label>Repeat</label>
+            <select name="recurrence_type" id="recurrenceType">
+                <option value="none">Does not repeat</option>
+                <option value="daily">Daily</option>
+                <option value="weekly">Weekly</option>
+                <option value="monthly">Monthly</option>
+                <option value="yearly">Yearly</option>
+            </select>
+
+            <label>Color</label>
+            <input type="color" name="color" value="#4f46e5" />
+            <label>Description</label>
+            <textarea name="description"></textarea>
+
+            <button type="submit" class="save-btn">Save Event</button>
+        </form>
+    </div>
+</div>
+
+<div class="week-header">
+    <button id="prevWeek">←</button>
+    <div id="weekDays" class="week-days"></div>
+    <button id="nextWeek">→</button>
+</div>
+
+<div class="week-calendar">
+    <div class="time-column">
+        @for (int i = 0; i < 24; i++)
+        {
+            <div class="time">@($"{i:D2}:00")</div>
+        }
+    </div>
+
+    <div class="days">
+        @for (int d = 1; d <= 6; d++)
+        {
+            <div class="day-column" data-day="@d"></div>
+        }
+        <div class="day-column" data-day="0"></div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/script.js"></script>
+}

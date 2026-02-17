@@ -11,8 +11,8 @@ namespace BusinessLayer.Models
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public ICollection<UserActivity> UserActivities { get; set; }
-        public ICollection<DailyRemider> DailyRemiders { get; set; }
+        public ICollection<UserActivity> UserActivities { get; set; } = new List<UserActivity>();
+        public ICollection<DailyRemider> DailyRemiders { get; set; } = new List<DailyRemider>();
 
         public User() { }
 

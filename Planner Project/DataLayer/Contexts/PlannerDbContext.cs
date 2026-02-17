@@ -20,11 +20,6 @@ namespace DataLayer.Contexts
         }
 
         public DbSet<Activity> Activities { get; set; }
-        //public DbSet<UserActivity> UserActivities { get; set; }
-        //public DbSet<TaskActivity> Tasks { get; set; }
-        //public DbSet<AppointmentActivity> Appointments { get; set; }
-        //public DbSet<BirthdayActivity> Birthdays { get; set; }
-        //public DbSet<Holiday> Holidays { get; set; }
         public DbSet<DailyRemider> DailyRemiders { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -34,7 +29,16 @@ namespace DataLayer.Contexts
             builder.ApplyConfigurationsFromAssembly(typeof(ActivityConfiguration).Assembly);
             builder.ApplyConfiguration(new UserConfiguration());
             builder.ApplyConfiguration(new DailyRemindersConfiguration());
-            
+
+            //Seed data for DailyRemiders
+            builder.Entity<DailyRemider>().HasData(
+    new DailyRemider { DailyRemiderId = 1, Text = "Drink 2L Water", Recurrence = DailyRemider.RecurrenceType.Daily },
+    new DailyRemider { DailyRemiderId = 2, Text = "Morning Meditation", Recurrence = DailyRemider.RecurrenceType.Daily },
+    new DailyRemider { DailyRemiderId = 3, Text = "Read 10 Pages", Recurrence = DailyRemider.RecurrenceType.Daily },
+    new DailyRemider { DailyRemiderId = 4, Text = "Evening Walk", Recurrence = DailyRemider.RecurrenceType.Daily },
+    new DailyRemider { DailyRemiderId = 6, Text = "Practice Coding for 30 Minutes", Recurrence = DailyRemider.RecurrenceType.Daily }
+);
+
         }
     }
 }

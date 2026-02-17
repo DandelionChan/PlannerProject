@@ -5,7 +5,7 @@ using DataLayer.Contexts;
 using System.Security.Claims;
 
 namespace MVC.Controllers
-{
+    {
     [Authorize]
     public class DailyRemindersController : Controller
     {
@@ -67,6 +67,30 @@ namespace MVC.Controllers
         {
             await _reminderContext.DeleteAsync(id);
             return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet]
+        public async Task<JsonResult> GetAllForManagement()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var allReminders = await _reminderContext.ReadAllAsync();
+            var myReminders = await _reminderContext.GetRemindersForUser(userId);
+
+            var result = allReminders.Select(r => new {
+                id = r.DailyRemiderId,
+                text = r.Text,
+                isActive = myReminders.Any(my => my.DailyRemiderId == r.DailyRemiderId)
+            });
+
+            return Json(result);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Subscribe(int id)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            await _reminderContext.AssignReminderToUser(id, userId);
+            return Ok();
         }
     }
 }

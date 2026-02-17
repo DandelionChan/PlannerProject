@@ -2,6 +2,12 @@ html {
   font-size: 14px;
 }
 
+.nav-link.btn-link {
+    border: none;
+    vertical-align: middle;
+    padding: 0.5rem 1rem;
+}
+
 @media (min-width: 768px) {
   html {
     font-size: 16px;
